@@ -1,0 +1,10 @@
+.gpt-hallucination-flag {
+    background: yellow;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.gpt-toggle-btn {
+    font-size: 12px;
+}
