@@ -4,6 +4,7 @@
   "description": "Detects potential hallucinations in ChatGPT responses",
   "version": "0.1",
   "permissions": ["activeTab", "storage"],
+  "host_permissions": ["https://example.com/*"],
   "content_scripts": [
     {
       "matches": ["https://chat.openai.com/*"],
