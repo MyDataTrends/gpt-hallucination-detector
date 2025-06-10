@@ -8,3 +8,7 @@
 .gpt-toggle-btn {
     font-size: 12px;
 }
+
+.gpt-status-banner {
+    border-radius: 3px;
+}

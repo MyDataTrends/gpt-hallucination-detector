@@ -2,10 +2,11 @@ import { initializeDomListener } from './dom-listener';
 import { extractLatestExchange } from './gpt-extractor';
 import { runHeuristics } from './heuristics-engine';
 import { displayFlags } from './overlay-ui';
-import { initToggle, extensionEnabled } from './toggles';
+import { initToggle, extensionEnabled, showStatusBanner } from './toggles';
 import { sendTelemetry } from './telemetry';
 
 initToggle();
+window.hallucinationMonitorTest = () => showStatusBanner('Extension test banner');
 
 initializeDomListener(metadata => {
     if (!extensionEnabled()) return;
