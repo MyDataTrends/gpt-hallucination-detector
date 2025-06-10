@@ -24,5 +24,14 @@ A floating "Hallucination Monitor" button appears in the bottom-right corner of 
 
 ## Manual Testing
 
-This repository contains no automated tests. Evaluate behavior manually in the browser. Heuristic results are approximate and may produce false positives or miss some hallucinations. Use the toggle button to temporarily disable the extension if needed during manual experiments. You can also open the console and call `hallucinationMonitorTest()` to display a test banner confirming the script is active.
+Evaluate behavior manually in the browser. Heuristic results are approximate and may produce false positives or miss some hallucinations. Use the toggle button to temporarily disable the extension if needed during manual experiments. You can also open the console and call `hallucinationMonitorTest()` to display a test banner confirming the script is active.
+
+## Running Tests
+
+Automated tests are provided using [Jest](https://jestjs.io/). Install dependencies and run the test suite with:
+
+```bash
+npm install
+npm test
+```
 
