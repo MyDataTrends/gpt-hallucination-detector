@@ -9,6 +9,14 @@ This Chrome/Chromium extension flags potential hallucinations in ChatGPT respons
 3. Enable **Developer mode** using the toggle in the top right.
 4. Click **Load unpacked** and select this repository's folder.
 
+Before loading the extension for the first time, install dependencies and build
+the bundled content script:
+
+```bash
+npm install
+npm run build
+```
+
 The extension will run on both `https://chat.openai.com` and the redirected `https://chatgpt.com` domain once loaded.
 
 When the page loads, a brief "Hallucination Monitor loaded" banner appears near the toggle button so you can confirm the extension is active.

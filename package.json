@@ -1,0 +1,12 @@
+{
+  "name": "gpt-hallucination-detector",
+  "version": "0.1.0",
+  "description": "Chrome extension to flag potential hallucinations in ChatGPT responses",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "rollup": "^3.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0"
+  }
+}
