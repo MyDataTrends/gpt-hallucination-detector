@@ -1,6 +1,20 @@
 import { createElement } from '../utils/dom-utils';
 import { logInfo } from '../utils/logging';
 
+export function showStatusBanner(text) {
+    const banner = createElement('div', { class: 'gpt-status-banner' }, [document.createTextNode(text)]);
+    banner.style.position = 'fixed';
+    banner.style.bottom = '50px';
+    banner.style.right = '10px';
+    banner.style.padding = '4px 6px';
+    banner.style.background = '#000';
+    banner.style.color = '#fff';
+    banner.style.fontSize = '12px';
+    banner.style.zIndex = '9999';
+    document.body.appendChild(banner);
+    setTimeout(() => banner.remove(), 3000);
+}
+
 let enabled = true;
 let toggleBtn;
 
@@ -19,6 +33,7 @@ export function initToggle() {
         logInfo(`Extension ${enabled ? 'enabled' : 'disabled'}`);
     });
     document.body.appendChild(toggleBtn);
+    showStatusBanner('Hallucination Monitor loaded');
 }
 
 export function extensionEnabled() {

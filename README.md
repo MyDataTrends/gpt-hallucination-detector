@@ -9,7 +9,10 @@ This Chrome/Chromium extension flags potential hallucinations in ChatGPT respons
 3. Enable **Developer mode** using the toggle in the top right.
 4. Click **Load unpacked** and select this repository's folder.
 
-The extension will run on `https://chat.openai.com` once loaded.
+The extension will run on both `https://chat.openai.com` and the redirected `https://chatgpt.com` domain once loaded.
+
+When the page loads, a brief "Hallucination Monitor loaded" banner appears near the toggle button so you can confirm the extension is active.
+
 
 ## Observing Heuristic Flags
 
@@ -21,4 +24,5 @@ A floating "Hallucination Monitor" button appears in the bottom-right corner of 
 
 ## Manual Testing
 
-This repository contains no automated tests. Evaluate behavior manually in the browser. Note that heuristic results are approximate and may produce false positives or miss some hallucinations.
+This repository contains no automated tests. Evaluate behavior manually in the browser. Heuristic results are approximate and may produce false positives or miss some hallucinations. Use the toggle button to temporarily disable the extension if needed during manual experiments. You can also open the console and call `hallucinationMonitorTest()` to display a test banner confirming the script is active.
+

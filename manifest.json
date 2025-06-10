@@ -7,7 +7,10 @@
   "host_permissions": ["https://example.com/*"],
   "content_scripts": [
     {
-      "matches": ["https://chat.openai.com/*"],
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*"
+      ],
       "js": ["src/content/index.js"],
       "css": ["src/assets/styles.css"]
     }
