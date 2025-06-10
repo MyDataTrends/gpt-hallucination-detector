@@ -37,3 +37,8 @@ A floating "Hallucination Monitor" button appears in the bottom-right corner of 
 
 There are no automated hallucination tests yet, so manual observation is required. After loading the extension, confirm the brief status banner appears. Heuristic results are approximate and may produce false positives or miss some hallucinations. Use the floating toggle button to disable the extension during experiments. You can open the browser console and call `hallucinationMonitorTest()` to display a test banner confirming the script is active.
 
+When testing, verify the DOM selectors still match ChatGPT's layout. The latest
+UI uses `[data-message-author-role="user"]` for prompts and
+`[data-message-author-role="assistant"]` for responses. If these selectors no
+longer return elements in the console, update `src/content/gpt-extractor.js`.
+
