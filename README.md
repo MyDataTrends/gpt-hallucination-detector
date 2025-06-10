@@ -9,12 +9,11 @@ This Chrome/Chromium extension flags potential hallucinations in ChatGPT respons
 3. Enable **Developer mode** using the toggle in the top right.
 4. Click **Load unpacked** and select this repository's folder.
 
-Before loading the extension for the first time, install dependencies and build
-the bundled content script:
+Before loading the extension for the first time, install dependencies. The build
+step runs automatically:
 
 ```bash
 npm install
-npm run build
 ```
 
 The extension will run on both `https://chat.openai.com` and the redirected `https://chatgpt.com` domain once loaded.
@@ -24,14 +23,13 @@ When the page loads, a brief "Hallucination Monitor loaded" banner appears near 
 
 ## Build
 
-Install dependencies and bundle the extension before loading it:
+If you make changes to the source files, rebuild the bundled content script:
 
 ```bash
-npm install
 npm run build
 ```
 
-The bundled files appear in the `dist/` directory. Use **Load unpacked** on that folder instead of the repository root. Loading the source folder after building is a common pitfall that prevents the compiled scripts from running.
+The compiled file appears in the `dist/` directory next to the manifest. Load the repository root (not `dist/`) with **Load unpacked** so `manifest.json` can locate the bundled script.
 
 ## Observing Heuristic Flags
 
