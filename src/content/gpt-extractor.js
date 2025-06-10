@@ -5,19 +5,30 @@ import { logInfo } from '../utils/logging';
  * Returns { promptText, responseText, promptNode, responseNode }
  */
 export function extractLatestExchange() {
-    // ChatGPT renders user prompts within elements using the `request-text` class
-    // while assistant responses use `result-streaming`. Older layouts fall back
-    // to `.message.user` and `.message.assistant`.
-    const userMessages = document.querySelectorAll('.request-text, .message.user');
-    const assistantMessages = document.querySelectorAll('.result-streaming, .message.assistant');
+    // ChatGPT messages can be identified via `data-message-author-role` in the
+    // current UI. Fall back to older class based selectors if needed.
+    const userSelector = '[data-message-author-role="user"], .request-text, .message.user';
+    const assistantSelector = '[data-message-author-role="assistant"], .result-streaming, .message.assistant';
+
+    const userMessages = document.querySelectorAll(userSelector);
+    const assistantMessages = document.querySelectorAll(assistantSelector);
 
     if (!userMessages.length || !assistantMessages.length) {
         logInfo('Could not locate latest exchange');
         return null;
     }
 
-    const latestUser = userMessages[userMessages.length - 1];
     const latestAssistant = assistantMessages[assistantMessages.length - 1];
+
+    // Attempt to locate the corresponding user prompt immediately preceding the
+    // assistant message. Fall back to the last user message if not found.
+    let latestUser = latestAssistant.previousElementSibling;
+    while (latestUser && !latestUser.matches(userSelector)) {
+        latestUser = latestUser.previousElementSibling;
+    }
+    if (!latestUser) {
+        latestUser = userMessages[userMessages.length - 1];
+    }
 
     if (!latestUser || !latestAssistant) {
         logInfo('Could not locate latest exchange');

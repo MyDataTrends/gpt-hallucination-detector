@@ -14,6 +14,17 @@ The extension will run on both `https://chat.openai.com` and the redirected `htt
 When the page loads, a brief "Hallucination Monitor loaded" banner appears near the toggle button so you can confirm the extension is active.
 
 
+## Build
+
+Install dependencies and bundle the extension before loading it:
+
+```bash
+npm install
+npm run build
+```
+
+The bundled files appear in the `dist/` directory. Use **Load unpacked** on that folder instead of the repository root. Loading the source folder after building is a common pitfall that prevents the compiled scripts from running.
+
 ## Observing Heuristic Flags
 
 When ChatGPT produces a response that matches one of the built-in heuristics (slow response, rote phrasing, suspicious citation, or ambiguous prompt), a small `⚠️` icon will appear in the top-right corner of the response box. Hover to see a tooltip describing the reason.
@@ -34,4 +45,5 @@ Automated tests are provided using [Jest](https://jestjs.io/). Install dependenc
 npm install
 npm test
 ```
+
 
