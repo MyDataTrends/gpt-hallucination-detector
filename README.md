@@ -13,6 +13,7 @@ The extension will run on both `https://chat.openai.com` and the redirected `htt
 
 When the page loads, a brief "Hallucination Monitor loaded" banner appears near the toggle button so you can confirm the extension is active.
 
+
 ## Observing Heuristic Flags
 
 When ChatGPT produces a response that matches one of the built-in heuristics (slow response, rote phrasing, suspicious citation, or ambiguous prompt), a small `⚠️` icon will appear in the top-right corner of the response box. Hover to see a tooltip describing the reason.
@@ -24,3 +25,4 @@ A floating "Hallucination Monitor" button appears in the bottom-right corner of 
 ## Manual Testing
 
 This repository contains no automated tests. Evaluate behavior manually in the browser. Heuristic results are approximate and may produce false positives or miss some hallucinations. Use the toggle button to temporarily disable the extension if needed during manual experiments. You can also open the console and call `hallucinationMonitorTest()` to display a test banner confirming the script is active.
+

@@ -14,3 +14,7 @@ Collects anonymous heuristic results and user feedback for later review and impr
 ## Must Not
 - Send any PII
 - Delay UI or block frontend rendering
+
+## Configuration
+The telemetry endpoint domain can be customized. Update the `ENDPOINT` constant
+in `src/content/telemetry.js` to point at your own collection server.
