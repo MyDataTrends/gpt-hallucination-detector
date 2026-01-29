@@ -2,17 +2,23 @@
   "manifest_version": 3,
   "name": "GPT Hallucination Detector",
   "description": "Detects potential hallucinations in ChatGPT responses",
-  "version": "0.1",
-  "permissions": ["activeTab", "storage"],
-  "host_permissions": ["https://example.com/*"],
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
   "content_scripts": [
     {
       "matches": [
         "https://chat.openai.com/*",
         "https://chatgpt.com/*"
       ],
-      "js": ["dist/content.js"],
-      "css": ["src/assets/styles.css"]
+      "js": [
+        "dist/content.js"
+      ],
+      "css": [
+        "src/assets/styles.css"
+      ]
     }
   ]
 }
