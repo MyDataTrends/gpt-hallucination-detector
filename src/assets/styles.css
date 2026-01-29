@@ -1,14 +1,344 @@
+/**
+ * GPT Hallucination Detector - Styles
+ * Supports severity levels, dark mode, and modern design
+ */
+
+/* ==========================================================================
+   Flag Container
+   ========================================================================== */
+
 .gpt-hallucination-flag {
-    background: yellow;
-    padding: 2px 4px;
-    border-radius: 3px;
-    font-size: 12px;
-    cursor: pointer;
-}
-.gpt-toggle-btn {
-    font-size: 12px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+.gpt-hallucination-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.gpt-hallucination-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.gpt-hallucination-icon:focus {
+    outline: 2px solid #0066cc;
+    outline-offset: 2px;
+}
+
+/* Badge for multiple flags */
+.gpt-hallucination-icon .flag-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #e53935;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+}
+
+/* ==========================================================================
+   Severity Colors
+   ========================================================================== */
+
+.gpt-hallucination-flag.severity-high .gpt-hallucination-icon {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    border: 2px solid #e53935;
+}
+
+.gpt-hallucination-flag.severity-moderate .gpt-hallucination-icon {
+    background: linear-gradient(135deg, #fffde7 0%, #fff9c4 100%);
+    border: 2px solid #f9a825;
+}
+
+.gpt-hallucination-flag.severity-low .gpt-hallucination-icon {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border: 2px solid #43a047;
+}
+
+/* ==========================================================================
+   Details Panel
+   ========================================================================== */
+
+.gpt-hallucination-panel {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 320px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    font-size: 13px;
+    line-height: 1.5;
+    animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gpt-hallucination-panel .panel-header {
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    background: #fafafa;
+    border-radius: 12px 12px 0 0;
+}
+
+.gpt-hallucination-panel .flag-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.gpt-hallucination-panel .panel-footer {
+    padding: 12px 16px;
+    font-size: 11px;
+    color: #666;
+    border-top: 1px solid #eee;
+    background: #fafafa;
+    border-radius: 0 0 12px 12px;
+}
+
+/* ==========================================================================
+   Flag Items
+   ========================================================================== */
+
+.gpt-hallucination-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.gpt-hallucination-item:last-child {
+    border-bottom: none;
+}
+
+.gpt-hallucination-item .item-header {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.gpt-hallucination-item .item-description {
+    margin: 0 0 8px 0;
+    color: #555;
+}
+
+.gpt-hallucination-item .item-evidence {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    background: #f8f8f8;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    color: #666;
+}
+
+.gpt-hallucination-item .item-evidence li {
+    margin: 4px 0;
+    padding-left: 12px;
+    position: relative;
+}
+
+.gpt-hallucination-item .item-evidence li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #999;
+}
+
+.gpt-hallucination-item .item-confidence {
+    margin-top: 8px;
+    font-size: 11px;
+    color: #888;
+}
+
+/* Severity-specific item colors */
+.gpt-hallucination-item.severity-high .item-header {
+    color: #c62828;
+}
+
+.gpt-hallucination-item.severity-moderate .item-header {
+    color: #f57f17;
+}
+
+.gpt-hallucination-item.severity-low .item-header {
+    color: #2e7d32;
+}
+
+/* ==========================================================================
+   Toggle Button
+   ========================================================================== */
+
+.gpt-toggle-btn {
+    font-size: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.gpt-toggle-btn:hover {
+    background: linear-gradient(135deg, #f5f5f5 0%, #eeeeee 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   Status Banner
+   ========================================================================== */
+
 .gpt-status-banner {
-    border-radius: 3px;
+    font-size: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    .gpt-hallucination-icon {
+        background: rgba(30, 30, 30, 0.95);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .gpt-hallucination-flag.severity-high .gpt-hallucination-icon {
+        background: linear-gradient(135deg, #3d2020 0%, #4a2525 100%);
+        border-color: #e53935;
+    }
+
+    .gpt-hallucination-flag.severity-moderate .gpt-hallucination-icon {
+        background: linear-gradient(135deg, #3d3518 0%, #4a401a 100%);
+        border-color: #f9a825;
+    }
+
+    .gpt-hallucination-flag.severity-low .gpt-hallucination-icon {
+        background: linear-gradient(135deg, #1e3d20 0%, #254525 100%);
+        border-color: #43a047;
+    }
+
+    .gpt-hallucination-panel {
+        background: #1e1e1e;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .gpt-hallucination-panel .panel-header {
+        background: #252525;
+        border-bottom-color: #333;
+        color: #eee;
+    }
+
+    .gpt-hallucination-panel .panel-footer {
+        background: #252525;
+        border-top-color: #333;
+        color: #999;
+    }
+
+    .gpt-hallucination-item {
+        border-bottom-color: #333;
+    }
+
+    .gpt-hallucination-item .item-header {
+        color: #eee;
+    }
+
+    .gpt-hallucination-item .item-description {
+        color: #bbb;
+    }
+
+    .gpt-hallucination-item .item-evidence {
+        background: #252525;
+        color: #999;
+    }
+
+    .gpt-toggle-btn {
+        background: linear-gradient(135deg, #444 0%, #333 100%);
+        border-color: #666;
+        color: #fff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .gpt-toggle-btn:hover {
+        background: linear-gradient(135deg, #555 0%, #444 100%);
+        border-color: #888;
+        color: #fff;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .gpt-hallucination-panel,
+    .gpt-status-banner,
+    .gpt-hallucination-icon {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* High contrast mode */
+@media (forced-colors: active) {
+    .gpt-hallucination-icon {
+        border: 2px solid currentColor;
+    }
 }

@@ -1,55 +1,88 @@
-# GPT Hallucination Detector
+# 🕵️‍♂️ GPT Hallucination Detector
 
-This Chrome/Chromium extension flags potential hallucinations in ChatGPT responses using simple heuristics.
+A research-backed browser extension that helps you trust (or doubt) ChatGPT responses by flagging potential hallucinations.
 
-## Loading the Extension
+## 🚀 How to Install
 
-1. Open Chromium-based browser (Chrome, Edge, etc.).
-2. Navigate to `chrome://extensions`.
-3. Enable **Developer mode** using the toggle in the top right.
-4. Click **Load unpacked** and select this repository's folder.
+This is a developer extension (unpacked). It works on **Chrome, Edge, Brave,** and other Chromium browsers.
 
-Before loading the extension for the first time, install dependencies. The build
-step runs automatically:
+### 1. Enable Developer Mode
+
+1. Open your browser and go to **Extensions**:
+   - Chrome: `chrome://extensions`
+   - Edge: `edge://extensions`
+2. Toggle **Developer mode** (usually in the top-right or bottom-left corner).
+
+### 2. Load the Extension
+
+1. Click the **Load unpacked** button.
+2. Select the `browser-extension` folder from this project.
+3. You're done! 🎉
+
+---
+
+## 📖 User Guide
+
+### How It Works
+
+When you chat with ChatGPT, this extension quietly analyzes the response in real-time. If it detects patterns associated with AI fabrication (hallucination), it displays a flag in the top-right corner of the message.
+
+### Risk Levels
+
+| Icon | Level | Meaning |
+|------|-------|---------|
+| 🔴 | **High Risk** | Multiple strong indicators found. Verify this info carefully! |
+| 🟡 | **Moderate Risk** | Some suspicious patterns detected. Worth checking. |
+| 🟢 | **Low Risk** | Minor issues, but generally looks okay. |
+
+### 🔍 Detection Indicators
+
+Click the flag icon to see exactly what triggered the warning.
+
+- **Overconfidence** 🎯  
+  The AI is using absolute language ("definitely", "undoubtedly") without nuance. Research shows LLMs act overconfident when they are wrong.
+
+- **Excessive Hedging** 🤷  
+  The AI is using too many "might", "maybe", "could be" phrases. This often signals it doesn't actually know the answer.
+
+- **Bad Citations** 🔗  
+  Checks for URLs that look fake or references that follow common hallucination patterns.
+
+- **Specificity Without Source** 📊  
+  The AI provided very specific data (dates, numbers, exact names) but didn't cite a source. This is a common way AI "lies convincingly."
+
+- **Rote Language** 🤖  
+  Phrases like *"As an AI language model..."* or *"Certainly!"* can indicate scripted/lazy generation.
+
+- **Self-Contradiction** ⚔️  
+  The extension detected sentences that seem to argue against each other.
+
+---
+
+## 🛠️ Troubleshooting
+
+**"The popup closes automatically!"**  
+This was a bug we fixed. Please click the **Reload** (🔄) icon on the extension card in `chrome://extensions` and refresh ChatGPT.
+
+**"I don't see any flags."**  
+That's good! It means the response passed our checks. Try asking something impossible (e.g., *"What is the population of Mars in 1850?"*) to see it in action.
+
+**"Can I turn it off?"**  
+Yes. Click the **"Hallucination Monitor"** button (bottom-right of screen) to toggle the extension on/off.
+
+---
+
+## 👨‍💻 For Developers
+
+**Build from source:**
 
 ```bash
 npm install
-```
-
-The extension will run on both `https://chat.openai.com` and the redirected `https://chatgpt.com` domain once loaded.
-
-When the page loads, a brief "Hallucination Monitor loaded" banner appears near the toggle button so you can confirm the extension is active.
-
-
-## Build
-
-If you make changes to the source files, rebuild the bundled content script:
-
-```bash
 npm run build
 ```
 
-The compiled file appears in the `dist/` directory next to the manifest. Load the repository root (not `dist/`) with **Load unpacked** so `manifest.json` can locate the bundled script.
-
-## Observing Heuristic Flags
-
-When ChatGPT produces a response that matches one of the built-in heuristics (slow response, rote phrasing, suspicious citation, or ambiguous prompt), a small `⚠️` icon will appear in the top-right corner of the response box. Hover to see a tooltip describing the reason.
-
-## Disabling the Extension
-
-A floating "Hallucination Monitor" button appears in the bottom-right corner of the page. Click it to toggle the extension on or off. The button becomes semi-transparent when disabled.
-
-## Manual Testing
-
-Evaluate behavior manually in the browser. Heuristic results are approximate and may produce false positives or miss some hallucinations. Use the toggle button to temporarily disable the extension if needed during manual experiments. You can also open the console and call `hallucinationMonitorTest()` to display a test banner confirming the script is active.
-
-## Running Tests
-
-Automated tests are provided using [Jest](https://jestjs.io/). Install dependencies and run the test suite with:
+**Run tests:**
 
 ```bash
-npm install
 npm test
 ```
-
-
